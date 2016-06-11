@@ -1,5 +1,5 @@
 import Swiper from 'react-native-swiper';
-import React, { View } from 'react-native';
+import React, { View, TabBarIOS, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as githubActions from './githubActions';
@@ -14,7 +14,7 @@ import Stats from './Stats';
 class SwiperScreen extends React.Component {
     static propTypes = {
         state: React.PropTypes.object.isRequired,
-        user: React.PropTypes.object.isRequired
+        user: React.PropTypes.object
     };
 
     componentWillReceiveProps(nextProps) {
@@ -30,9 +30,31 @@ class SwiperScreen extends React.Component {
         }
 
         return (
+            <TabBarIOS>
+                <TabBarIOS.Item
+                    title="Github Feed"
+                    selected={true}
+                    icon={require("./feed.png")}
+                >
+                    {this.renderSwiper()}
+                </TabBarIOS.Item>
+                <TabBarIOS.Item
+                    title="Log out"
+                    selected={true}
+                    icon={require("./signout.png")}
+                    onPress={() => this.props.onLogout()}
+                >
+                    {this.renderSwiper()}
+                </TabBarIOS.Item>
+            </TabBarIOS>
+        );
+    }
+
+    renderSwiper() {
+        return (
             <Swiper showsButtons={false}>
                 <View>
-                    <Feed onLogout={this.props.onLogout} />
+                    <Feed />
                 </View>
                 <View>
                     <User />
@@ -45,11 +67,17 @@ class SwiperScreen extends React.Component {
     }
 }
 
+const styles = {
+    tab: {
+        fontSize: 14,
+        color: "black"
+    }
+}
 
 function mapStateToProps(state) {
     return {
         state: state.github,
-        loggedIn: state.login.loggedIn
+        user: state.login.user
     };
 }
 

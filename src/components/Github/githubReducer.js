@@ -6,9 +6,9 @@ const initialState = {
     categories: []
 };
 
-export default function counter(state = initialState, action = {}) {
+export default function github(state = initialState, action = {}) {
     switch (action.type) {
-    case 'ON_TOGGLE_LOADING':
+    case 'ON_TOGGLE_GITHUB_LOADING':
         return onToggleLoading(state);
     default:
         return state;
@@ -16,6 +16,7 @@ export default function counter(state = initialState, action = {}) {
 }
 
 function onToggleLoading(state) {
+    console.log("onToggleLoading");
     return {
         ...state,
         loading: !state.loading
