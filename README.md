@@ -2,7 +2,7 @@
 
 This repository contains a small react-native application that allows you to log-in to Github and shows your feed. It's still a WIP.
 
-The app was built with purpose of giving a talk about Introduction to React Native.
+The app was built with purpose of giving a talk about Introduction to React Native. It currently only supports iOS.
 
 ### Configuration File
 
@@ -19,3 +19,10 @@ See config.exanple.json for an example.
     }
 }
 ```
+
+### Run
+
+* `npm run start` via cmd
+* Run via XCode (build and run on a simulator)
+
+To run on a device, connect to laptop and change the URL in `AppDelegate.m` to match the local laptop ip (instead of using localhost).
