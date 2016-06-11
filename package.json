@@ -1,0 +1,42 @@
+{
+  "name": "react-native-github-feed",
+  "version": "1.0.0",
+  "description": "React Native Github Feed",
+  "author": "Joachim Seminck <joachim@seminck.be>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node_modules/react-native/packager/packager.sh",
+    "build": "react-native bundle",
+    "test": "eslint src",
+    "build-ios": "node node_modules/react-native/local-cli/cli.js bundle --entry-file index.ios.js --bundle-output iOS/main.jsbundle --platform 'ios' --assets-dest ./  --dev false --reset-cache",
+    "android-setup-port": "adb reverse tcp:8081 tcp:8881",
+    "remotedev": "remotedev-debugger --hostname localhost --port 5678 --runserver"
+  },
+  "engines": {
+    "node": ">=4",
+    "npm": ">=2 <4"
+  },
+  "dependencies": {
+    "@exponent/react-native-navigator": "^0.4.1",
+    "buffer": "^4.6.0",
+    "classnames": "^2.2.3",
+    "immutable": "^3.7.5",
+    "lodash": "^4.13.1",
+    "react-native": "^0.19.0",
+    "react-native-swiper": "^1.4.3",
+    "react-redux": "^4.4.0",
+    "redux": "^3.3.0",
+    "redux-logger": "^2.6.1",
+    "redux-thunk": "^1.0.3"
+  },
+  "devDependencies": {
+    "babel-core": "^6.3.17",
+    "babel-eslint": "^5.0.0",
+    "babel-preset-react-native": "^1.4.0",
+    "babel-preset-stage-0": "^6.3.13",
+    "eslint-plugin-react": "^4.3.0",
+    "remote-redux-devtools": "^0.1.1",
+    "remote-redux-devtools-on-debugger": "^0.2.4",
+    "remotedev-server": "0.0.1"
+  }
+}
