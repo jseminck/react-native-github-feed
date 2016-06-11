@@ -10,7 +10,7 @@ routes.getGithubRoute = () => ({
     },
     getTitle() {
         return 'Github';
-	}
+    }
 });
 
 routes.getLoginRoute = () => ({
@@ -20,6 +20,6 @@ routes.getLoginRoute = () => ({
     getTitle() {
         return 'Login';
     }
-})
+});
 
 export default routes;

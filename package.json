@@ -10,7 +10,8 @@
     "test": "eslint src",
     "build-ios": "node node_modules/react-native/local-cli/cli.js bundle --entry-file index.ios.js --bundle-output iOS/main.jsbundle --platform 'ios' --assets-dest ./  --dev false --reset-cache",
     "android-setup-port": "adb reverse tcp:8081 tcp:8881",
-    "remotedev": "remotedev-debugger --hostname localhost --port 5678 --runserver"
+    "remotedev": "remotedev-debugger --hostname localhost --port 5678 --runserver",
+    "lint": "eslint ."
   },
   "engines": {
     "node": ">=4",
@@ -31,9 +32,10 @@
   },
   "devDependencies": {
     "babel-core": "^6.3.17",
-    "babel-eslint": "^5.0.0",
+    "babel-eslint": "^6.0.4",
     "babel-preset-react-native": "^1.4.0",
     "babel-preset-stage-0": "^6.3.13",
+    "eslint": "^2.12.0",
     "eslint-plugin-react": "^4.3.0",
     "remote-redux-devtools": "^0.1.1",
     "remote-redux-devtools-on-debugger": "^0.2.4",

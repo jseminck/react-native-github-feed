@@ -1,4 +1,4 @@
-import React, { Text, View, ListView } from 'react-native';
+import React, { Text, View } from 'react-native';
 
 class Stats extends React.Component {
     static propTypes = {

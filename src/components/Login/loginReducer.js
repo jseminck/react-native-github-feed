@@ -51,7 +51,7 @@ function onLoginSuccess(state, user) {
     return {
         ...state,
         loading: false,
-    user,
+        user,
         loggedIn: true,
         errorMessage: undefined
     };
@@ -72,6 +72,6 @@ function onLogout(state) {
         ...state,
         loading: false,
         user: undefined,
-        loggedIn: false,
-    }
+        loggedIn: false
+    };
 }

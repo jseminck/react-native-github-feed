@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import buffer from 'buffer';
 import {AsyncStorage} from 'react-native';
 import config from './../../config';
@@ -25,12 +24,12 @@ class AuthService {
                 return callback(true);
             }
 
-            var authInfo = {
+            const authInfo = {
                 header: {
-                    'Authorization': 'Basic ' + data[authKey]
+                    'Authorization': `Basic ${data[authKey]}`
                 },
                 user: data[userKey]
-            }
+            };
 
             return callback(null, authInfo);
         });
@@ -55,12 +54,12 @@ class AuthService {
             password = config.testUser.password;
         }
 
-        const auth = buffer.Buffer(username + ':' + password)
+        const auth = buffer.Buffer(`${username}:${password}`)
             .toString('base64');
 
         return fetch('https://api.github.com/user', {
             headers: {
-                'Authorization': 'Basic ' + auth
+                'Authorization': `Basic ${auth}`
             }
         }).then(response => {
             if (response.status >= 200 && response.status < 300) {
@@ -68,10 +67,10 @@ class AuthService {
             }
 
             if (response.status === 401) {
-                throw "Bad credentials";
+                throw 'Bad credentials';
             }
 
-            throw "Unexpected error";
+            throw 'Unexpected error';
         })
         .then(response => response.json())
         .then(json => {

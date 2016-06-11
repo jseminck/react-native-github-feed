@@ -7,9 +7,6 @@ import routes from './../../scripts/routes';
 
 import LoginInput from './LoginInput';
 import LoginButton from './LoginButton';
-import LoginAbout from './LoginAbout';
-
-const img = require('./img/logo.png');
 
 class LoginScreen extends React.Component {
     static propTypes = {
@@ -48,7 +45,7 @@ class LoginScreen extends React.Component {
             <View style={styles.container}>
                 <View style={styles.containerLogo}>
                     <Image
-                        source={{uri : "https://octodex.github.com/images/bouncercat.png"}}
+                        source={{uri : 'https://octodex.github.com/images/bouncercat.png'}}
                         style={styles.containerLogoImage}
                     />
                     <LoginInput
@@ -79,7 +76,7 @@ class LoginScreen extends React.Component {
                 </View>
                 <ActivityIndicatorIOS
                     animating={this.props.state.loading}
-                    size="large"
+                    size='large'
                     style={styles.activityIndicator}
                 />
             </View>
@@ -114,7 +111,7 @@ const styles = {
         borderRadius: 100
     },
     containerLogin: {
-        flex: 0.33,
+        flex: 0.33
     },
     loginButton: {
         flex: 0.8,
@@ -127,7 +124,7 @@ const styles = {
     },
     errorMessageText: {
         fontSize: 20,
-        color: 'red',
+        color: 'red'
     },
     activityIndicator: {
         marginTop: 15

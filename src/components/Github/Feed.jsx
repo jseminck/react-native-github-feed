@@ -1,4 +1,4 @@
-import React, { Text, TouchableHighlight, View, ListView } from 'react-native';
+import React, { Text, View } from 'react-native';
 
 class Feed extends React.Component {
     static propTypes = {

@@ -14,7 +14,7 @@ export default class LoginInput extends React.Component {
 
     getInputImageStyles() {
         return [
-            styles.inputImage,
+            styles.inputImage
         ];
     }
 

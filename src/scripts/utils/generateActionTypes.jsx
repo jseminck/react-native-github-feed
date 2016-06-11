@@ -13,7 +13,7 @@ export default function generateActionTypes(...constants) {
             ...actionTypes,
             [constant]: constant
         };
-    })
+    });
 
     return actionTypes;
 }

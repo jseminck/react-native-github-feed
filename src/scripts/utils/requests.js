@@ -1,5 +1,4 @@
 export function get(url) {
-    console.log("Feting urL", url);
     return fetch(url);
 }
 

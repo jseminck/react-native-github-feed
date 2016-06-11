@@ -1,13 +1,10 @@
-import React, { View, Text } from 'react-native';
+import React, { View } from 'react-native';
 
+// Nothing here... not sure if needed...
 export default class LoginAbout extends React.Component {
     render() {
         return (
-            <View style={styles.about}>
-                <Text>
-                    
-                </Text>
-            </View>
+            <View style={styles.about} />
         );
     }
 }

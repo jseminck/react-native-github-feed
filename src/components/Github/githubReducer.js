@@ -1,9 +1,5 @@
 const initialState = {
-    month: 1,
-    year: 2000,
-    loading: false,
-    data: [],
-    categories: []
+    loading: false
 };
 
 export default function github(state = initialState, action = {}) {
@@ -16,7 +12,6 @@ export default function github(state = initialState, action = {}) {
 }
 
 function onToggleLoading(state) {
-    console.log("onToggleLoading");
     return {
         ...state,
         loading: !state.loading

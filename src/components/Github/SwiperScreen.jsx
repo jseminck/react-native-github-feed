@@ -1,5 +1,5 @@
 import Swiper from 'react-native-swiper';
-import React, { View, TabBarIOS, Text } from 'react-native';
+import React, { View, TabBarIOS } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as githubActions from './githubActions';
@@ -14,7 +14,10 @@ import Stats from './Stats';
 class SwiperScreen extends React.Component {
     static propTypes = {
         state: React.PropTypes.object.isRequired,
-        user: React.PropTypes.object
+        user: React.PropTypes.object,
+        navigator: React.PropTypes.object.isRequired,
+
+        onLogout: React.PropTypes.func.isRequired
     };
 
     componentWillReceiveProps(nextProps) {
@@ -32,22 +35,26 @@ class SwiperScreen extends React.Component {
         return (
             <TabBarIOS>
                 <TabBarIOS.Item
-                    title="Github Feed"
+                    title='Github Feed'
                     selected={true}
-                    icon={require("./feed.png")}
+                    icon={require('./feed.png')}
                 >
                     {this.renderSwiper()}
                 </TabBarIOS.Item>
                 <TabBarIOS.Item
-                    title="Log out"
+                    title='Log out'
                     selected={true}
-                    icon={require("./signout.png")}
-                    onPress={() => this.props.onLogout()}
+                    icon={require('./signout.png')}
+                    onPress={::this.logout}
                 >
                     {this.renderSwiper()}
                 </TabBarIOS.Item>
             </TabBarIOS>
         );
+    }
+
+    logout() {
+        this.props.onLogout();
     }
 
     renderSwiper() {
@@ -67,13 +74,6 @@ class SwiperScreen extends React.Component {
     }
 }
 
-const styles = {
-    tab: {
-        fontSize: 14,
-        color: "black"
-    }
-}
-
 function mapStateToProps(state) {
     return {
         state: state.github,
@@ -85,5 +85,5 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators(Object.assign(githubActions, {onLogout}), dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SwiperScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(SwiperScreen);
 

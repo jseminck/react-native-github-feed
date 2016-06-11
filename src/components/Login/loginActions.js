@@ -1,4 +1,3 @@
-import * as requests from './../../scripts/utils/requests';
 import AuthService from './AuthService';
 
 export function onStartupLogin() {
@@ -9,8 +8,8 @@ export function onStartupLogin() {
             }
 
             return dispatch(onLoginSuccess(result));
-        })
-    }
+        });
+    };
 }
 
 export function onUsernameChange(username) {
@@ -68,5 +67,5 @@ export function onLogout() {
                 type: 'ON_LOGOUT'
             });
         });
-    }
+    };
 }
