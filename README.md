@@ -15,7 +15,7 @@ See config.exanple.json for an example.
 {
     testUser: {
         username: "joachim@seminck.be",
-        password: "8JARJmNnQKESweikW9dVnxvaZ~iNiCcKXFoXtYcq"
+        password: "Some password"
     }
 }
 ```
