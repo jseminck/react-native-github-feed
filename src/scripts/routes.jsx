@@ -6,7 +6,7 @@ const routes = {};
  */
 routes.getGithubRoute = () => ({
     getSceneClass() {
-        return require('../components/Github/SwiperScreen').default;
+        return require('../components/Github/TabsOrSwiperScreen').default;
     },
     getTitle() {
         return 'Github';
