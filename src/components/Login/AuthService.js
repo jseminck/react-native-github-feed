@@ -28,7 +28,7 @@ class AuthService {
                 header: {
                     'Authorization': `Basic ${data[authKey]}`
                 },
-                user: data[userKey]
+                user: JSON.parse(data[userKey])
             };
 
             return callback(null, authInfo);

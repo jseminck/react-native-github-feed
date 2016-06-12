@@ -22,12 +22,14 @@ class LoginScreen extends React.Component {
         onLoginClick: React.PropTypes.func.isRequired
     };
 
-    componentWillMount() {
-        this.props.onStartupLogin();
+    componentDidMount() {
+        if (!this.props.state.loggedIn) {
+            this.props.onStartupLogin();
+        }
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.state.loggedIn) {
+        if (nextProps.state.loggedIn !== this.props.state.loggedIn && nextProps.state.loggedIn) {
             let route = routes.getGithubRoute();
             this.props.navigator.replace(route);
         }

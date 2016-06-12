@@ -2,12 +2,12 @@ import AuthService from './AuthService';
 
 export function onStartupLogin() {
     return (dispatch) => {
-        AuthService.getAuthInfo((err, result) => {
+        AuthService.getAuthInfo((err, authInfo) => {
             if (err) {
                 return dispatch(onLoginFailed(err));
             }
 
-            return dispatch(onLoginSuccess(result));
+            return dispatch(onLoginSuccess(authInfo.user));
         });
     };
 }
@@ -30,12 +30,12 @@ export function onLoginClick(user) {
     return (dispatch) => {
         dispatch(onToggleLoading());
 
-        AuthService.login(user.username, user.password, (err, result) => {
+        AuthService.login(user.username, user.password, (err, user) => {
             if (err) {
                 return dispatch(onLoginFailed(err));
             }
 
-            return dispatch(onLoginSuccess(result));
+            return dispatch(onLoginSuccess(user));
         });
     };
 }
