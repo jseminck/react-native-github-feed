@@ -1,42 +1,22 @@
 import AuthService from './../Login/AuthService';
 
-// export async function onGithubLoad(user) {
-//     return (dispatch) => {
-//         dispatch(onToggleLoading());
-//
-//         // Double fetch... perhaps can use async/await here with Promise.all??
-//         AuthService.getAuthInfo(async (err, authInfo) => {
-//             const userResponse = await fetch(user.repos_url);
-//             const userJson = await userResponse.json();
-//             dispatch(onUserInfoLoadSuccessfull(userJson));
-//
-//             const feedResponse = await fetch(user.received_events_url, {headers: {authInfo}});
-//             const feedJson = feedResponse.json();
-//             dispatch(onFeedLoadSuccessfull(feedJson, 1));
-//             dispatch(onToggleLoading());
-//         });
-//     };
-// }
-
 export function onGithubLoad(user) {
     return (dispatch) => {
         dispatch(onToggleLoading());
 
         // Double fetch... perhaps can use async/await here with Promise.all??
-        AuthService.getAuthInfo((err, authInfo) => {
-            fetch(user.repos_url)
-                .then(response => response.json())
-                .then(json => dispatch(onUserInfoLoadSuccessfull(json)))
-                .then(() => {
-                    fetch(user.received_events_url, {headers: authInfo.header})
-                        .then(response => response.json())
-                        .then(json => dispatch(onFeedLoadSuccessfull(json, 1)))
-                        .then(() => dispatch(onToggleLoading()));
-                });
+        AuthService.getAuthInfo(async (err, authInfo) => {
+            const reposResponse = await fetch(user.repos_url);
+            const reposJson = await reposResponse.json();
+            dispatch(onUserInfoLoadSuccessfull(reposJson));
+
+            const feedResponse = await fetch(user.received_events_url, {headers: {authInfo}});
+            const feedJson = await feedResponse.json();
+            dispatch(onFeedLoadSuccessfull(feedJson, 1));
+            dispatch(onToggleLoading());
         });
     };
 }
-
 
 export function onLoadMore() {
     return (dispatch, getState) => {
