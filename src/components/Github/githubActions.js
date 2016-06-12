@@ -23,13 +23,13 @@ export function onLoadMore() {
     return (dispatch, getState) => {
         // TODO: Get user and currentPage from store
         const user = getState().login.user;
-        const currentPage = getState().github.currentPage;
+        const currentPage = getState().github.page;
 
         // Double fetch... perhaps can use async/await here with Promise.all??
         AuthService.getAuthInfo((err, authInfo) => {
             fetch(`${user.received_events_url}?page=${currentPage + 1}`, {headers: authInfo.header})
                 .then(response => response.json())
-                .then(json => dispatch(onFeedLoadSuccessfull(json, currentPage + 1)))
+                .then(json => dispatch(onFeedLoadSuccessfull(json, currentPage + 1)));
         });
     };
 }

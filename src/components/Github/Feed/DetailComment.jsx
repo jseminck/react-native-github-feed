@@ -1,6 +1,7 @@
 import React, { Text, View, Image, ScrollView } from 'react-native';
+import moment from 'moment';
 
-export default class FeedRow extends React.Component {
+export default class DetailComment extends React.Component {
     static propTypes = {
         eventDetail: React.PropTypes.object.isRequired
     }
@@ -14,7 +15,13 @@ export default class FeedRow extends React.Component {
                         style={styles.image}
                     />
                     <Text style={styles.name}>
-                        {this.props.eventDetail.actor.login}
+                        {moment(this.props.eventDetail.created_at).fromNow()}
+                    </Text>
+                    <Text>
+                        {this.props.eventDetail.actor.login} comment an issue
+                    </Text>
+                    <Text>
+                        at {this.props.eventDetail.repo.name}
                     </Text>
                     {this.renderIssueComment()}
                 </View>
@@ -23,23 +30,18 @@ export default class FeedRow extends React.Component {
     }
 
     renderIssueComment() {
-        if (this.props.eventDetail.type === 'IssueCommentEvent') {
-            return (
-                <View style={styles.container}>
-                    <Text style={styles.typeInfo}>
-                        Comment on issue at {this.props.eventDetail.repo.name}
+        return (
+            <View style={styles.container}>
+                <View style={styles.issueContainer}>
+                    <Text style={styles.issueTitle}>
+                        {this.props.eventDetail.payload.issue.title}
                     </Text>
-                    <View style={styles.issueContainer}>
-                        <Text style={styles.issueTitle}>
-                            {this.props.eventDetail.payload.issue.title}
-                        </Text>
-                        <Text style={styles.issueBody}>
-                            {this.props.eventDetail.payload.comment.body}
-                        </Text>
-                    </View>
+                    <Text style={styles.issueBody}>
+                        {this.props.eventDetail.payload.comment.body}
+                    </Text>
                 </View>
-            );
-        }
+            </View>
+        );
     }
 }
 

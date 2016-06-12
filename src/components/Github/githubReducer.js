@@ -40,7 +40,7 @@ function onUserInfoLoadSuccess(state, repos) {
 function onFeedLoadSuccess(state, feed, page) {
     return {
         ...state,
-        feed: state.feed.concat(feed.filter(event => event.type === 'IssueCommentEvent' || event.type === 'PushEvent')),
+        feed: state.feed.concat(feed),
         page
     };
 }

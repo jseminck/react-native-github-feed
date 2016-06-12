@@ -20,7 +20,7 @@ class AuthService {
                 return Object.assign(data, {[keyValueArr[0]]: keyValueArr[1]});
             }, {});
 
-            if (data[authKey] === '' || data[userKey] === '') {
+            if (!data[authKey] || !data[userKey] || data[authKey] === '' || data[userKey] === '') {
                 return callback(true);
             }
 

@@ -15,12 +15,28 @@ routes.getGithubRoute = () => ({
     }
 });
 
-routes.getFeedDetail = (rowData) => ({
+routes.getFeedDetailComment = (rowData) => ({
     // using renderScene since we want to pass props data to the detail component
     renderScene(navigator) {
-        let FeedDetail = require('../components/Github/FeedDetail').default;
+        let DetailComment = require('../components/Github/Feed/DetailComment').default;
         return (
-            <FeedDetail
+            <DetailComment
+                navigator={navigator}
+                eventDetail={rowData}
+            />
+        );
+    },
+    getTitle() {
+        return 'Feed Detail';
+    }
+});
+
+routes.getFeedDetailPush = (rowData) => ({
+    // using renderScene since we want to pass props data to the detail component
+    renderScene(navigator) {
+        let DetailPush = require('../components/Github/Feed/DetailPush').default;
+        return (
+            <DetailPush
                 navigator={navigator}
                 eventDetail={rowData}
             />

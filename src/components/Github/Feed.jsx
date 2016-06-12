@@ -1,5 +1,6 @@
 import React, { View, ListView, TouchableHighlight, Text } from 'react-native';
-import FeedRow from './FeedRow';
+import RowComment from './Feed/RowComment';
+import RowPush from './Feed/RowPush';
 import LoadMoreButton from './LoadMoreButton';
 
 class Feed extends React.Component {
@@ -45,12 +46,25 @@ class Feed extends React.Component {
     }
 
     renderRow(rowData) {
-        return (
-            <FeedRow
-                navigator={this.props.navigator}
-                rowData={rowData}
-            />
-        );
+        if (rowData.type === 'IssueCommentEvent') {
+            return (
+                <RowComment
+                    navigator={this.props.navigator}
+                    rowData={rowData}
+                />
+            );
+        }
+
+        if (rowData.type === 'PushEvent') {
+            return (
+                <RowPush
+                    navigator={this.props.navigator}
+                    rowData={rowData}
+                />
+            );
+        }
+
+        return null;
     }
 
     renderFooter() {

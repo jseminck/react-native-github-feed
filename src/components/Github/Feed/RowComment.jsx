@@ -1,8 +1,8 @@
 import React, { View, Text, Image, TouchableHighlight } from 'react-native';
 import moment from 'moment';
-import routes from './../../scripts/routes';
+import routes from './../../../scripts/routes';
 
-export default class FeedRow extends React.Component {
+export default class RowComment extends React.Component {
     static propTypes = {
         navigator: React.PropTypes.object.isRequired,
         rowData: React.PropTypes.object.isRequired
@@ -36,7 +36,7 @@ export default class FeedRow extends React.Component {
     }
 
     onPress() {
-        let route = routes.getFeedDetail(this.props.rowData);
+        let route = routes.getFeedDetailComment(this.props.rowData);
         this.props.navigator.push(route);
     }
 }
