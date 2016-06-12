@@ -2,10 +2,18 @@ import React, { View, Text } from 'react-native';
 
 export default () => {
     return (
-        <View>
+        <View style={styles.container}>
             <Text>
-                Loading items...
+                Logout ...
             </Text>
         </View>
     );
+};
+
+const styles = {
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    }
 };
