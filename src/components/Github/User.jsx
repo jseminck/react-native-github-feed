@@ -21,7 +21,6 @@ class User extends React.Component {
     render() {
         return (
             <View style={{
-                flex: 1,
                 justifyContent: 'flex-start',
                 alignItems: 'center'
             }}>
