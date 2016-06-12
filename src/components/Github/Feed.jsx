@@ -1,7 +1,9 @@
-import React, { Text, View, ListView } from 'react-native';
+import React, { Text, View, ListView, Image } from 'react-native';
+import moment from 'moment';
 
 class Feed extends React.Component {
     static propTypes = {
+        feed: React.PropTypes.array.isRequired
     }
 
     constructor(props) {
@@ -12,17 +14,17 @@ class Feed extends React.Component {
         });
 
         this.state = {
-            dataSource: dataSource.cloneWithRows(['a', 'b', 'c'])
+            dataSource: dataSource.cloneWithRows(this.props.feed)
         };
     }
 
     render() {
         return (
             <View style={{
-                flex: 1,
-                justifyContent: 'flex-start'
+                flex: 1
             }}>
                 <ListView
+                    style={{flex: 1}}
                     dataSource={this.state.dataSource}
                     renderRow={::this.renderRow}
                 />
@@ -31,10 +33,34 @@ class Feed extends React.Component {
     }
 
     renderRow(rowData) {
+        console.log("rowData", rowData);
         return (
-            <Text>
-                {rowData}
-            </Text>
+            <View style={{
+                flex: 1,
+                flexDirection: 'row',
+                padding: 20,
+                alignItems: 'center',
+                borderColor: '#D7D7D7',
+                borderBottomWidth: 1
+            }}>
+                <Image
+                    source={{uri: rowData.actor.avatar_url}}
+                    style={{width: 36, height: 36, borderRadius: 18}}
+                />
+                <View style={{
+                    paddingLeft: 20
+                }}>
+                    <Text style={{backgroundColor: '#fff'}}>
+                        {moment(rowData.created_at).fromNow()}
+                    </Text>
+                    <Text style={{backgroundColor: '#fff'}}>
+                        {rowData.actor.login}
+                    </Text>
+                    <Text style={{backgroundColor: '#fff'}}>
+                        {rowData.repo.name}
+                    </Text>
+                </View>
+            </View>
         );
     }
 }

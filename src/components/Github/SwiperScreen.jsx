@@ -42,7 +42,7 @@ class SwiperScreen extends React.Component {
         return (
             <Swiper showsButtons={false}>
                 <View>
-                    <Feed />
+                    <Feed feed={this.props.state.feed} />
                 </View>
                 <View>
                     <User

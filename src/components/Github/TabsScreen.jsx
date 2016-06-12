@@ -4,6 +4,8 @@ import { bindActionCreators } from 'redux';
 import * as githubActions from './githubActions';
 import {onLogout} from './../Login/loginActions';
 import routes from './../../scripts/routes';
+
+import Loading from './Loading';
 import Feed from './Feed';
 import User from './User';
 
@@ -33,6 +35,10 @@ class TabsScreen extends React.Component {
     }
 
     render() {
+        if (this.props.state.loading) {
+            return <Loading />;
+        }
+
         return (
             <TabBarIOS>
                 <TabBarIOS.Item
@@ -41,8 +47,10 @@ class TabsScreen extends React.Component {
                     onPress={this.changeTab.bind(this, 'feed')}
                     icon={require('./feed.png')}
                 >
-                    <View>
-                        <Feed />
+                    <View style={{
+                        flex: 1
+                    }}>
+                        <Feed feed={this.props.state.feed} />
                     </View>
                 </TabBarIOS.Item>
                 <TabBarIOS.Item
