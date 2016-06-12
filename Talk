@@ -1,0 +1,43 @@
+Introduction to React Native
+
+- Let's set some expectations:
+*** I do not have any affilation with React Native whatsoever
+*** I do not have any production applications running in React Native
+*** Just like to explore, have toyed with Ionic and was unhappy about it
+
+- What is React Native?
+*** Frame work to build Native Apps by Facebook
+*** Uses JavaScript and CSS, but not HTML -> JSX
+*** Compiles the React code into native UI components -> Better UI
+
+- Difference with Ionic Framework
+*** Webview vs Native components
+
+- React
+*** You just code in React, just like we do for the Web
+*** Instead of HTML elements, we use React Native components
+*** Use standard CSS, which is translated into styling for UI components
+*** Uses flexbox for layoyt
+*** ES&!
+
+- Why React Native?
+*** Relatively easy to get started: No need to learn Swift/Objective-C
+*** Uses all of the cool technologies that we are used to
+*** Has gotten more popular in the last year: 39k+ stars on github, job prospects
+
+- Why not React Native? (In my experience)
+*** Getting started for iOS was relatively easy, but Android was a whole other story
+*** Final build has caused me quite some headaches
+*** Debugging deployment issues seems to require some knowledge of the actial platform... considering everything is antive this makes sense... maybe some prior knowledge might have been useful
+
+- Easiest way to get started?
+*** DEMO: React Native Playground
+
+- CLI get started
+*** Demo: containerLogoImage
+*** Demo: Refresh, debug
+
+- Demo: Github Explorer
+*** React, redux
+*** Fetch polyfill
+*** Text, TextInput, Image, TouchableHighlight, ActivityIndicator, AsyncStorage
