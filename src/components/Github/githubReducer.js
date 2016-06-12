@@ -3,7 +3,8 @@ import _ from 'lodash';
 const initialState = {
     selectedTab: 'feed',
     loading: false,
-    repos: []
+    repos: [],
+    feed: []
 };
 
 export default function github(state = initialState, action = {}) {
@@ -12,6 +13,8 @@ export default function github(state = initialState, action = {}) {
         return onToggleLoading(state);
     case 'ON_USER_INFO_LOAD_SUCCESS':
         return onUserInfoLoadSuccess(state, action.repos);
+    case 'ON_FEED_LOAD_SUCCESS':
+        return onFeedLoadSuccess(state, action.feed);
     case 'ON_CHANGE_TAB':
         return onChangeTab(state, action.tab);
     default:
@@ -29,8 +32,14 @@ function onToggleLoading(state) {
 function onUserInfoLoadSuccess(state, repos) {
     return {
         ...state,
-        loading: false,
         repos: _.orderBy(repos, 'updated_at', 'desc')
+    };
+}
+
+function onFeedLoadSuccess(state, feed) {
+    return {
+        ...state,
+        feed
     };
 }
 

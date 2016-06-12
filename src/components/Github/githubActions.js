@@ -1,10 +1,18 @@
-export function onUserInfoLoad(user) {
+export function onGithubLoad(user) {
     return (dispatch) => {
         dispatch(onToggleLoading());
 
+        // Double fetch... perhaps can use async/await here with Promise.all??
         fetch(user.repos_url)
             .then(response => response.json())
-            .then(json => dispatch(onUserInfoLoadSuccessful(json)));
+            .then(json => dispatch(onUserInfoLoadSuccessfull(json)))
+            .then(() => {
+                fetch(user.received_events_url)
+                    .then(response => response.json())
+                    .then(json => dispatch(onFeedLoadSuccessfull(json)))
+                    .then(() => dispatch(onToggleLoading()));
+            });
+
     };
 }
 
@@ -14,10 +22,17 @@ function onToggleLoading() {
     };
 }
 
-function onUserInfoLoadSuccessful(repos) {
+function onUserInfoLoadSuccessfull(repos) {
     return {
         type: 'ON_USER_INFO_LOAD_SUCCESS',
         repos
+    };
+}
+
+function onFeedLoadSuccessfull(feed) {
+    return {
+        type: 'ON_FEED_LOAD_SUCCESS',
+        feed
     };
 }
 
