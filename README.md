@@ -8,14 +8,17 @@ The app was built with purpose of giving a talk about Introduction to React Nati
 
 It's necessary to create a `config.json` file in the `src` directory.
 
-For development purposes, a testUser can be set-up that overrides the username and password in the login screen, to ease the development by not having to repeat the credentials every time.
+For development purposes, a `testUser` can be set-up that overrides the username and password in the login screen, to ease the development by not having to repeat the credentials every time.
 
-See config.exanple.json for an example.
+You can also choose what kind of navigation you would like by changing the `navigation` value: a swiper window, rotating between three screens, or a tabbed navigation.
+
+See `config.example.json` for an example.
 ```
 {
-    testUser: {
-        username: "joachim@seminck.be",
-        password: "Some password"
+    "navigation": "tabs|swiper",
+    "testUser": {
+        "username": "joachim@seminck.be",
+        "password": "Some password"
     }
 }
 ```
