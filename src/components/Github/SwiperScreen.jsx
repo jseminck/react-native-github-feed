@@ -9,6 +9,7 @@ import routes from './../../scripts/routes';
 import Loading from './Loading';
 import Feed from './Feed';
 import User from './User';
+import Logout from './Logout';
 
 class SwiperScreen extends React.Component {
     static propTypes = {
@@ -51,17 +52,9 @@ class SwiperScreen extends React.Component {
                     user={this.props.user}
                     repos={this.props.state.repos}
                 />
-                <TouchableHighlight onPress={::this.logout}>
-                    <Text>
-                        Log out ...
-                    </Text>
-                </TouchableHighlight>
+                <Logout onLogout={this.props.onLogout} />
             </Swiper>
         );
-    }
-
-    logout() {
-        this.props.onLogout();
     }
 }
 
