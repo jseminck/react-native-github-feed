@@ -13,6 +13,15 @@ routes.getGithubRoute = () => ({
     }
 });
 
+routes.getFeedDetail = () => ({
+    getSceneClass() {
+        return require('../components/Github/FeedDetail').default;
+    },
+    getTitle() {
+        return 'Feed Detail';
+    }
+});
+
 routes.getLoginRoute = () => ({
     getSceneClass() {
         return require('../components/Login/LoginScreen').default;

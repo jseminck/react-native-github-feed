@@ -3,6 +3,7 @@ import FeedRow from './FeedRow';
 
 class Feed extends React.Component {
     static propTypes = {
+        navigator: React.PropTypes.object.isRequired,
         feed: React.PropTypes.array.isRequired
     }
 
@@ -31,7 +32,12 @@ class Feed extends React.Component {
     }
 
     renderRow(rowData) {
-        return <FeedRow rowData={rowData} />;
+        return (
+            <FeedRow
+                navigator={this.props.navigator}
+                rowData={rowData}
+            />
+        );
     }
 }
 

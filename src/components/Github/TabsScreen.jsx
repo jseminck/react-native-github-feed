@@ -48,7 +48,10 @@ class TabsScreen extends React.Component {
                     icon={require('./feed.png')}
                 >
                     <View style={styles.view}>
-                        <Feed feed={this.props.state.feed} />
+                        <Feed
+                            navigator={this.props.navigator}
+                            feed={this.props.state.feed}
+                        />
                     </View>
                 </TabBarIOS.Item>
                 <TabBarIOS.Item
