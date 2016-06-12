@@ -18,12 +18,13 @@ class SwiperScreen extends React.Component {
         navigator: React.PropTypes.object.isRequired,
 
         onLogout: React.PropTypes.func.isRequired,
-        onUserInfoLoad: React.PropTypes.func.isRequired
+        onLoadMore: React.PropTypes.func.isRequired,
+        onGithubLoad: React.PropTypes.func.isRequired
     };
 
     componentDidMount() {
         if (this.props.loggedIn) {
-            this.props.onUserInfoLoad(this.props.user);
+            this.props.onGithubLoad(this.props.user);
         }
     }
 
@@ -42,9 +43,10 @@ class SwiperScreen extends React.Component {
         return (
             <Swiper showsButtons={false}>
                 <View>
-                    <Feed 
+                    <Feed
                         navigator={this.props.navigator}
                         feed={this.props.state.feed}
+                        onLoadMore={this.props.onLoadMore}
                     />
                 </View>
                 <View>

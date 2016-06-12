@@ -18,6 +18,7 @@ class TabsScreen extends React.Component {
 
         onLogout: React.PropTypes.func.isRequired,
         onGithubLoad: React.PropTypes.func.isRequired,
+        onLoadMore: React.PropTypes.func.isRequired,
         onChangeTab: React.PropTypes.func.isRequired
     };
 
@@ -51,6 +52,7 @@ class TabsScreen extends React.Component {
                         <Feed
                             navigator={this.props.navigator}
                             feed={this.props.state.feed}
+                            onLoadMore={this.props.onLoadMore}
                         />
                     </View>
                 </TabBarIOS.Item>

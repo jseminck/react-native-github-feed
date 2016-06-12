@@ -4,7 +4,8 @@ const initialState = {
     selectedTab: 'feed',
     loading: false,
     repos: [],
-    feed: []
+    feed: [],
+    page: 0
 };
 
 export default function github(state = initialState, action = {}) {
@@ -14,7 +15,7 @@ export default function github(state = initialState, action = {}) {
     case 'ON_USER_INFO_LOAD_SUCCESS':
         return onUserInfoLoadSuccess(state, action.repos);
     case 'ON_FEED_LOAD_SUCCESS':
-        return onFeedLoadSuccess(state, action.feed);
+        return onFeedLoadSuccess(state, action.feed, action.page);
     case 'ON_CHANGE_TAB':
         return onChangeTab(state, action.tab);
     default:
@@ -36,10 +37,11 @@ function onUserInfoLoadSuccess(state, repos) {
     };
 }
 
-function onFeedLoadSuccess(state, feed) {
+function onFeedLoadSuccess(state, feed, page) {
     return {
         ...state,
-        feed
+        feed: state.feed.concat(feed.filter(event => event.type === 'IssueCommentEvent' || event.type === 'PushEvent')),
+        page
     };
 }
 

@@ -12,9 +12,24 @@ export function onGithubLoad(user) {
                 .then(() => {
                     fetch(user.received_events_url, {headers: authInfo.header})
                         .then(response => response.json())
-                        .then(json => dispatch(onFeedLoadSuccessfull(json)))
+                        .then(json => dispatch(onFeedLoadSuccessfull(json, 1)))
                         .then(() => dispatch(onToggleLoading()));
                 });
+        });
+    };
+}
+
+export function onLoadMore() {
+    return (dispatch, getState) => {
+        // TODO: Get user and currentPage from store
+        const user = getState().login.user;
+        const currentPage = getState().github.currentPage;
+
+        // Double fetch... perhaps can use async/await here with Promise.all??
+        AuthService.getAuthInfo((err, authInfo) => {
+            fetch(`${user.received_events_url}?page=${currentPage + 1}`, {headers: authInfo.header})
+                .then(response => response.json())
+                .then(json => dispatch(onFeedLoadSuccessfull(json, currentPage + 1)))
         });
     };
 }
@@ -32,10 +47,11 @@ function onUserInfoLoadSuccessfull(repos) {
     };
 }
 
-function onFeedLoadSuccessfull(feed) {
+function onFeedLoadSuccessfull(feed, page) {
     return {
         type: 'ON_FEED_LOAD_SUCCESS',
-        feed
+        feed,
+        page
     };
 }
 
@@ -43,5 +59,5 @@ export function onChangeTab(tab) {
     return {
         type: 'ON_CHANGE_TAB',
         tab
-    }
+    };
 }
