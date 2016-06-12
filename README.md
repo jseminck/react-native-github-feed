@@ -32,17 +32,8 @@ To run on a device, connect to laptop and change the URL in `AppDelegate.m` to m
 
 ### Screenshots
 
-##### Main screens
+##### Demo
+![Tabs](https://github.com/jseminck/react-native-github-feed/blob/master/screenshots/github_feed.gif)
 
-![Login Screen](https://github.com/jseminck/react-native-github-feed/blob/master/screenshots/login.png | width=100)
-![Comment View](https://github.com/jseminck/react-native-github-feed/blob/master/screenshots/commentview.png | width=100)
-![Push View](https://github.com/jseminck/react-native-github-feed/blob/master/screenshots/commitview.png | width=100)
-
-##### Infinite Loading
-
-![Infinte Loading](https://github.com/jseminck/react-native-github-feed/blob/master/screenshots/github_feed_loadmore.gif)
-
-##### Tabs vs Swiper
-
-![Swiper](https://github.com/jseminck/react-native-github-feed/blob/master/screenshots/github_feed_swiper.gif)
-![Tabs](https://github.com/jseminck/react-native-github-feed/blob/master/screenshots/github_feed_tabs.gif)
+##### Swiper instead of Tabs
+![Swiper](https://github.com/jseminck/react-native-github-feed/blob/master/screenshots/github_swiper.gif)
