@@ -1,3 +1,5 @@
+import React from 'react-native';
+
 const routes = {};
 
 /**
@@ -13,9 +15,16 @@ routes.getGithubRoute = () => ({
     }
 });
 
-routes.getFeedDetail = () => ({
-    getSceneClass() {
-        return require('../components/Github/FeedDetail').default;
+routes.getFeedDetail = (rowData) => ({
+    // using renderScene since we want to pass props data to the detail component
+    renderScene(navigator) {
+        let FeedDetail = require('../components/Github/FeedDetail').default;
+        return (
+            <FeedDetail
+                navigator={navigator}
+                eventDetail={rowData}
+            />
+        );
     },
     getTitle() {
         return 'Feed Detail';

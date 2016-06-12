@@ -20,15 +20,12 @@ class User extends React.Component {
 
     render() {
         return (
-            <View style={{
-                justifyContent: 'flex-start',
-                alignItems: 'center'
-            }}>
+            <View style={styles.container}>
                 <Image
                     source={{uri : this.props.user.avatar_url}}
                     style={styles.image}
                 />
-            <Text style={styles.name}>
+                <Text style={styles.name}>
                     {this.props.user.name}
                 </Text>
                 <Text style={styles.info}>
@@ -53,6 +50,10 @@ class User extends React.Component {
 }
 
 const styles = {
+    container: {
+        justifyContent: 'flex-start',
+        alignItems: 'center'
+    },
     image: {
         borderRadius: 100,
         height: 200,
@@ -73,6 +74,6 @@ const styles = {
     repo: {
         color: 'white'
     }
-}
+};
 
 export default User;

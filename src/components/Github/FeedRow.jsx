@@ -36,7 +36,7 @@ export default class FeedRow extends React.Component {
     }
 
     onPress() {
-        let route = routes.getFeedDetail();
+        let route = routes.getFeedDetail(this.props.rowData);
         this.props.navigator.push(route);
     }
 }
