@@ -29,3 +29,20 @@ See `config.example.json` for an example.
 * Run via XCode (build and run on a simulator)
 
 To run on a device, connect to laptop and change the URL in `AppDelegate.m` to match the local laptop ip (instead of using localhost).
+
+### Screenshots
+
+##### Main screens
+
+![Login Screen](https://github.com/jseminck/react-native-github-feed/blob/master/screenshots/login.png)
+![Comment View](https://github.com/jseminck/react-native-github-feed/blob/master/screenshots/commentview.png)
+![Push View](https://github.com/jseminck/react-native-github-feed/blob/master/screenshots/commitview.png)
+
+##### Infinite Loading
+
+![Infinte Loading](https://github.com/jseminck/react-native-github-feed/blob/master/screenshots/github_feed_loadmore.gif)
+
+##### Tabs vs Swiper
+
+![Swiper](https://github.com/jseminck/react-native-github-feed/blob/master/screenshots/github_feed_swiper.gif)
+![Tabs](https://github.com/jseminck/react-native-github-feed/blob/master/screenshots/github_feed_swiper.gif)
