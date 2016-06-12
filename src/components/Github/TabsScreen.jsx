@@ -47,9 +47,7 @@ class TabsScreen extends React.Component {
                     onPress={this.changeTab.bind(this, 'feed')}
                     icon={require('./feed.png')}
                 >
-                    <View style={{
-                        flex: 1
-                    }}>
+                    <View style={styles.view}>
                         <Feed feed={this.props.state.feed} />
                     </View>
                 </TabBarIOS.Item>
@@ -59,7 +57,7 @@ class TabsScreen extends React.Component {
                     onPress={this.changeTab.bind(this, 'user')}
                     icon={require('./user.png')}
                 >
-                    <View>
+                    <View style={styles.view}>
                         <User
                             user={this.props.user}
                             repos={this.props.state.repos}
@@ -85,6 +83,12 @@ class TabsScreen extends React.Component {
         this.props.onChangeTab(tab);
     }
 }
+
+const styles = {
+    view: {
+        flex: 1
+    }
+};
 
 function mapStateToProps(state) {
     return {
