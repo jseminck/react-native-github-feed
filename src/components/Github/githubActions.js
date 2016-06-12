@@ -1,18 +1,21 @@
+import AuthService from './../Login/AuthService';
+
 export function onGithubLoad(user) {
     return (dispatch) => {
         dispatch(onToggleLoading());
 
         // Double fetch... perhaps can use async/await here with Promise.all??
-        fetch(user.repos_url)
-            .then(response => response.json())
-            .then(json => dispatch(onUserInfoLoadSuccessfull(json)))
-            .then(() => {
-                fetch(user.received_events_url)
-                    .then(response => response.json())
-                    .then(json => dispatch(onFeedLoadSuccessfull(json)))
-                    .then(() => dispatch(onToggleLoading()));
-            });
-
+        AuthService.getAuthInfo((err, authInfo) => {
+            fetch(user.repos_url)
+                .then(response => response.json())
+                .then(json => dispatch(onUserInfoLoadSuccessfull(json)))
+                .then(() => {
+                    fetch(user.received_events_url, {headers: authInfo.header})
+                        .then(response => response.json())
+                        .then(json => dispatch(onFeedLoadSuccessfull(json)))
+                        .then(() => dispatch(onToggleLoading()));
+                });
+        });
     };
 }
 
