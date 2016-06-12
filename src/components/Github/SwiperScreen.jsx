@@ -42,26 +42,20 @@ class SwiperScreen extends React.Component {
 
         return (
             <Swiper showsButtons={false}>
-                <View>
-                    <Feed
-                        navigator={this.props.navigator}
-                        feed={this.props.state.feed}
-                        onLoadMore={this.props.onLoadMore}
-                    />
-                </View>
-                <View>
-                    <User
-                        user={this.props.user}
-                        repos={this.props.state.repos}
-                    />
-                </View>
-                <View>
-                    <TouchableHighlight onPress={::this.logout}>
-                        <Text>
-                            Log out ...
-                        </Text>
-                    </TouchableHighlight>
-                </View>
+                <Feed
+                    navigator={this.props.navigator}
+                    feed={this.props.state.feed}
+                    onLoadMore={this.props.onLoadMore}
+                />
+                <User
+                    user={this.props.user}
+                    repos={this.props.state.repos}
+                />
+                <TouchableHighlight onPress={::this.logout}>
+                    <Text>
+                        Log out ...
+                    </Text>
+                </TouchableHighlight>
             </Swiper>
         );
     }
