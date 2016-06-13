@@ -47,7 +47,7 @@ class AuthService {
      * @param {String} password
      * @param {Function} callback
      */
-    login(username, password, callback) {
+    async login(username, password, callback) {
         // Use pre-created data to skip login credentials.
         if (config.testUser) {
             username = config.testUser.username;
@@ -57,34 +57,30 @@ class AuthService {
         const auth = buffer.Buffer(`${username}:${password}`)
             .toString('base64');
 
-        return fetch('https://api.github.com/user', {
-            headers: {
-                'Authorization': `Basic ${auth}`
-            }
-        }).then(response => {
-            if (response.status >= 200 && response.status < 300) {
-                return response;
-            }
+        try {
+            const response = await fetch('https://api.github.com/user', {
+                headers: {
+                    'Authorization': `Basic ${auth}`
+                }
+            });
 
             if (response.status === 401) {
                 throw 'Bad credentials';
             }
+            else if ( response.status < 200 || response.status >= 300) {
+                throw 'Unexpected error';
+            }
 
-            throw 'Unexpected error';
-        })
-        .then(response => response.json())
-        .then(json => {
-            AsyncStorage.multiSet([
+            const json = await response.json();
+            await AsyncStorage.multiSet([
                 [authKey, auth],
                 [userKey, JSON.stringify(json)]
-            ], (err) => {
-                if (err) {
-                    return callback(err, null);
-                }
-                return callback(null, json);
-            });
-        })
-        .catch(err => callback(err));
+            ]);
+
+            callback(null, json);
+        } catch(err) {
+            callback(err, null);
+        }
     }
 
     /**
@@ -93,16 +89,13 @@ class AuthService {
      *
      * @param {Function} callback
      */
-    logout(callback) {
-        AsyncStorage.multiSet([
-            [authKey, ''],
-            [userKey, '']
-        ], (err) => {
-            if (err) {
-                return callback(err);
-            }
+    async logout(callback) {
+        try {
+            await AsyncStorage.clear();
             return callback();
-        });
+        } catch(err) {
+            callback(err);
+        }
     }
 }
 
