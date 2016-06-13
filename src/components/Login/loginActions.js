@@ -1,14 +1,13 @@
 import AuthService from './AuthService';
 
 export function onStartupLogin() {
-    return function(dispatch) {
-        AuthService.getAuthInfo((err, authInfo) => {
-            if (err) {
-                return dispatch(onLoginFailed(err));
-            }
-
+    return async (dispatch) => {
+        try {
+            const authInfo = await AuthService.getAuthInfo();
             return dispatch(onLoginSuccess(authInfo.user));
-        });
+        } catch (err) {
+            return dispatch(onLoginFailed(err));
+        }
     };
 }
 
@@ -27,16 +26,15 @@ export function onPasswordChange(password) {
 }
 
 export function onLoginClick(user) {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(onToggleLoading());
 
-        AuthService.login(user.username, user.password, (err, user) => {
-            if (err) {
-                return dispatch(onLoginFailed(err));
-            }
-
-            return dispatch(onLoginSuccess(user));
-        });
+        try {
+            const githubUser = await AuthService.login(user.username, user.password);
+            return dispatch(onLoginSuccess(githubUser));
+        } catch (err) {
+            return dispatch(onLoginFailed(err));
+        }
     };
 }
 
@@ -61,11 +59,14 @@ function onLoginFailed(errorMessage) {
 }
 
 export function onLogout() {
-    return (dispatch) => {
-        AuthService.logout(() => {
+    return async (dispatch) => {
+        try {
+            await AuthService.logout();
             return dispatch({
                 type: 'ON_LOGOUT'
             });
-        });
+        } catch (err) {
+            // Handle error
+        }
     };
 }

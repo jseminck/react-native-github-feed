@@ -1,35 +1,33 @@
 import AuthService from './../Login/AuthService';
 
 export function onGithubLoad(user) {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(onToggleLoading());
 
         // Double fetch... perhaps can use async/await here with Promise.all??
-        AuthService.getAuthInfo(async (err, authInfo) => {
-            const reposResponse = await fetch(user.repos_url);
-            const reposJson = await reposResponse.json();
-            dispatch(onUserInfoLoadSuccessfull(reposJson));
+        const authInfo = await AuthService.getAuthInfo();
 
-            const feedResponse = await fetch(user.received_events_url, {headers: {authInfo}});
-            const feedJson = await feedResponse.json();
-            dispatch(onFeedLoadSuccessfull(feedJson, 1));
-            dispatch(onToggleLoading());
-        });
+        const reposResponse = await fetch(user.repos_url);
+        const reposJson = await reposResponse.json();
+        dispatch(onUserInfoLoadSuccessfull(reposJson));
+
+        const feedResponse = await fetch(user.received_events_url, {headers: {authInfo}});
+        const feedJson = await feedResponse.json();
+        dispatch(onFeedLoadSuccessfull(feedJson, 1));
+        dispatch(onToggleLoading());
     };
 }
 
 export function onLoadMore() {
-    return (dispatch, getState) => {
-        // TODO: Get user and currentPage from store
+    return async (dispatch, getState) => {
         const user = getState().login.user;
         const currentPage = getState().github.page;
 
         // Double fetch... perhaps can use async/await here with Promise.all??
-        AuthService.getAuthInfo((err, authInfo) => {
-            fetch(`${user.received_events_url}?page=${currentPage + 1}`, {headers: authInfo.header})
-                .then(response => response.json())
-                .then(json => dispatch(onFeedLoadSuccessfull(json, currentPage + 1)));
-        });
+        const authInfo = await AuthService.getAuthInfo();
+        const response = await fetch(`${user.received_events_url}?page=${currentPage + 1}`, {headers: authInfo.header});
+        const json = await response.json();
+        dispatch(onFeedLoadSuccessfull(json, currentPage + 1));
     };
 }
 
