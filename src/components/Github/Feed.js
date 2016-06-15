@@ -36,6 +36,7 @@ class Feed extends React.Component {
         return (
             <View style={styles.view}>
                 <ListView
+                    enableEmptySections={true}
                     style={styles.view}
                     dataSource={this.state.dataSource}
                     renderRow={::this.renderRow}

@@ -33,6 +33,7 @@ class User extends React.Component {
                     {this.props.user.company} / {this.props.user.location}
                 </Text>
                 <ListView
+                    enableEmptySections={true}
                     dataSource={this.state.dataSource}
                     style={styles.listView}
                     renderRow={this.renderRepo}

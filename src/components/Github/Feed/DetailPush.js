@@ -52,6 +52,7 @@ export default class DetailComment extends React.Component {
                     {this.props.eventDetail.payload.commits.length} commit(s)
                 </Text>
                 <ListView
+                    enableEmptySections={true}
                     dataSource={this.state.dataSource}
                     renderRow={this.renderRow}
                 />
